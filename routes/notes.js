@@ -21,6 +21,9 @@ notes.post("/", (req, res) => {
       text,
       id: uuidv4(),
     };
+    readAndAppend(newNote, './db/db.json')
+  }else{
+    res.error('Error creating new note')
   }
 });
 
