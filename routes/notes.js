@@ -15,7 +15,7 @@ notes.get("/", (req, res) => {
 });
 
 
-
+// GET route for specific note by Id
 notes.get('/:id', (req,res)=>{
   const noteId = req.params.id
   readFromFile('./db/db.json')
@@ -41,7 +41,7 @@ notes.post("/", (req, res) => {
       id: uuidv4(),
     };
     readAndAppend(newNote, './db/db.json')
-    
+    req.body(newNote)
   }else{
     res.error('Error creating new note')
   }
