@@ -1,3 +1,4 @@
+// exports routers to server
 const express = require('express');
 
 const notesRouter = require('./notes')

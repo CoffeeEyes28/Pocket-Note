@@ -1,4 +1,5 @@
 const notes = require("express").Router();
+const { json } = require("express");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const {
@@ -13,6 +14,22 @@ notes.get("/", (req, res) => {
   readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)));
 });
 
+
+
+notes.get('/:id', (req,res)=>{
+  const noteId = req.params.id
+  readFromFile('./db/db.json')
+  .then((data) => JSON.parse(data))
+  .then((json) => {
+    const result = json.filter((note) => note.id === noteId)
+    return result.length > 0
+    ? res.json(result)
+    : res.json('No note with that Id')
+  })
+});
+
+
+
 // POST route for newly saved note
 notes.post("/", (req, res) => {
   const { title, text } = req.body;
@@ -24,7 +41,7 @@ notes.post("/", (req, res) => {
       id: uuidv4(),
     };
     readAndAppend(newNote, './db/db.json')
-   
+    
   }else{
     res.error('Error creating new note')
   }
@@ -32,7 +49,7 @@ notes.post("/", (req, res) => {
 
 
 
-
+// DELETE route for existing notes
 notes.delete('/:id', (req,res) => {
     const noteId = req.params.id
     readFromFile('./db/db.json')
