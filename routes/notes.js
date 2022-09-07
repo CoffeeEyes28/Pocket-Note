@@ -21,10 +21,10 @@ notes.get('/:id', (req,res)=>{
   readFromFile('./db/db.json')
   .then((data) => JSON.parse(data))
   .then((json) => {
-    const result = json.filter((note) => note.id === noteId)
+    const result = json.filter((note) => note.id === noteId);
     return result.length > 0
     ? res.json(result)
-    : res.json('No note with that Id')
+    : res.json('No note with that Id');
   })
 });
 
@@ -41,7 +41,7 @@ notes.post("/", (req, res) => {
       id: uuidv4(),
     };
     readAndAppend(newNote, './db/db.json')
-    req.body(newNote)
+    res.json(newNote)
   }else{
     res.error('Error creating new note')
   }
