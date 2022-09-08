@@ -44,4 +44,4 @@ Note taking application where users can store their thoughts in a quick and orga
 
 # Application 
 
-Click the [📝](https://pacific-oasis-81006.herokuapp.com/ target="_blank") to open the application! 
+Click the [📝](https://pacific-oasis-81006.herokuapp.com/) to open the application! 
